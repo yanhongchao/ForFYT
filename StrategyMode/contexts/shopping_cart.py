@@ -57,3 +57,4 @@ class ShoppingCart:
             discount = original_total - final_total
             print(f"节省: {discount}元")
 
+
