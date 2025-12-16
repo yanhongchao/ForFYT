@@ -6,6 +6,7 @@
 - 叶子节点：文件，提供基础行为
 - 组合节点：目录，管理子组件并递归聚合操作
 - 客户端无需区分单个对象或组合，统一调用接口
+- 文件系统、组织架构、
 """
 
 from abc import ABC, abstractmethod
@@ -60,8 +61,17 @@ class Directory(FileSystemComponent):
         self._children.append(component)
 
     def remove(self, component: FileSystemComponent) -> None:
-        self._children.remove(component)
-        component.parent = None
+        """移除子组件
+        Args:
+            component: 要移除的组件
+        """
+        # 如果component在self._children里面，才remove
+        if component in self._children:
+            self._children.remove(component)
+            component.parent = None
+        else:
+            print(f"文件/文件夹: {component.name} 不存在")
+
 
     def display(self, indent: int = 0) -> None:
         spaces = " " * indent
@@ -108,6 +118,7 @@ def demonstrate_composite_pattern() -> None:
     root.add(documents)
     root.add(pictures)
     root.add(music)
+    root.remove(document1)
 
     documents.add(notes)
     pictures.add(photo1)
@@ -119,6 +130,7 @@ def demonstrate_composite_pattern() -> None:
     document1.add(document2)
     document2.add(document3)
     document3.add(document4)
+    
 
 
     # 展示
