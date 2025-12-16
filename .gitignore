@@ -1,3 +1,8 @@
-StrategyMode/strategies/__pycache__/*
-StrategyMode/contexts/__pycache__/*
+# 忽略所有 __pycache__ 文件夹
+__pycache__/
+**/__pycache__/
 
+# 忽略 Python 编译文件
+*.pyc
+*.pyo
+*.pyd

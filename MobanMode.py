@@ -103,14 +103,32 @@ class TeaMaker(BeverageMaker):
     def add_condiments(self):
         print("加入柠檬")
 
+# # 使用示例
+# if __name__ == "__main__":
+#     print("制作咖啡:")
+#     coffee = CoffeeMaker()
+#     coffee.make_beverage()
+   
+#     print("\n" + "="*30 + "\n")
+   
+#     print("制作茶:")
+#     tea = TeaMaker()
+#     tea.make_beverage()
+
+class NumberedLines:
+    def __init__(self, filename):
+        self.filename = filename
+   
+    def __iter__(self):
+        with open(self.filename, 'r', encoding='utf-8') as file:
+            for line_num, line in enumerate(file, 1):
+                yield f"{line_num}: {line.rstrip()}"
+
+
+
 # 使用示例
 if __name__ == "__main__":
-    print("制作咖啡:")
-    coffee = CoffeeMaker()
-    coffee.make_beverage()
-   
-    print("\n" + "="*30 + "\n")
-   
-    print("制作茶:")
-    tea = TeaMaker()
-    tea.make_beverage()
+    print("测试文件迭代:")
+    
+    for num in NumberedLines("SingletonDemo.py"):
+        print(num)  
